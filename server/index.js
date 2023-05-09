@@ -53,8 +53,13 @@ if (process.env.NODE_ENV === "development") {
     app.use(morgan('dev'))
 }
 
-// const MongoUrl = `mongodb://localhost:27017/water_detection`;
-const  MongoUrl = `mongodb://${process.env.DB_USERNAME}:${process.env.PASSWORD}@cluster0-shard-00-00.xwzd4.mongodb.net:27017,cluster0-shard-00-01.xwzd4.mongodb.net:27017,cluster0-shard-00-02.xwzd4.mongodb.net:27017/water_detection?ssl=true&replicaSet=atlas-khbsbw-shard-0&authSource=admin&retryWrites=true&w=majority`
+app.use(express.json());
+
+
+mongoose.set('strictQuery', false);
+
+const MongoUrl = `mongodb://localhost:27017/water_detection`;
+/*const  MongoUrl = `mongodb://${process.env.DB_USERNAME}:${process.env.PASSWORD}@cluster0-shard-00-00.xwzd4.mongodb.net:27017,cluster0-shard-00-01.xwzd4.mongodb.net:27017,cluster0-shard-00-02.xwzd4.mongodb.net:27017/water_detection?ssl=true&replicaSet=atlas-khbsbw-shard-0&authSource=admin&retryWrites=true&w=majority` */
 
 mongoose.connect(MongoUrl, {
     useUnifiedTopology: true,
@@ -69,6 +74,7 @@ MongoClient.connect(MongoUrl, { useUnifiedTopology: true }, (err, client) => {
 })
 
 const  userRouter = require('./routes/userRoute');
+const signalRouter =  require('./routes/fileUpload_router');
 // const productRouter =   require('./routes/productRoute')
 // const bakeryRouter =  require('./routes/bakeryRoute');
 // // const fileUploadRouter =  require('./routes/fileUpload_router');
@@ -76,6 +82,7 @@ const  userRouter = require('./routes/userRoute');
 // const orderRouter =  require('./routes/orderRoute')
 
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/signal', signalRouter);
 // app.use('/api/v1/products', productRouter);
 // app.use('/api/v1/bakeries',bakeryRouter )
 // // app.use('/api/v1/posts',fileUploadRouter );
