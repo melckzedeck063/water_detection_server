@@ -1,5 +1,6 @@
 const multer =  require('multer');
 const fs = require('fs')
+const filePath = '../../data.json'
 
 
 const  multerStorage =  multer.diskStorage({
@@ -32,7 +33,7 @@ const  upload =  multer({
 exports.postSignal= (req,res) =>  {
     const data = JSON.stringify(req.body);
   
-  fs.writeFile('data.json', data, (error) => {
+  fs.writeFile(filePath, data, (error) => {
     if (error) {
       console.error('An error occurred:', error);
       res.status(500).send('An error occurred while saving the data.');
@@ -45,7 +46,7 @@ exports.postSignal= (req,res) =>  {
 }
 
 exports.readSignal  =  (req,res) =>  {
-    fs.readFile('data.json', 'utf8', (error, data) => {
+    fs.readFile(filePath, 'utf8', (error, data) => {
         if (error) {
           console.error('An error occurred:', error);
         } else {
