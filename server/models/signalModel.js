@@ -14,15 +14,11 @@ const SignalSchema = mongoose.Schema({
         type  : String,
         required : true
     },
-    humidity:{
-        type : String,
-        default : 0
-    },
     turbidity:{
         type : String,
         default : 0
     },
-    level: {
+    water_level: {
         type : String,
         required : true
     },

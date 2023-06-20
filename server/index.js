@@ -74,16 +74,16 @@ MongoClient.connect(MongoUrl, { useUnifiedTopology: true }, (err, client) => {
 })
 
 const  userRouter = require('./routes/userRoute');
-const signalRouter =  require('./routes/fileUpload_router');
-// const productRouter =   require('./routes/productRoute')
-// const bakeryRouter =  require('./routes/bakeryRoute');
+// const signalRouter =  require('./routes/fileUpload_router');
+const productRouter =   require('./routes/signal_route')
+const signalRouter =  require('./routes/signal_route');
 // // const fileUploadRouter =  require('./routes/fileUpload_router');
 // const  cartRouter =  require('./routes/cartItemRoute');
 // const orderRouter =  require('./routes/orderRoute')
 
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/signal', signalRouter);
-// app.use('/api/v1/products', productRouter);
+app.use('/api/v1/signal', signalRouter);
 // app.use('/api/v1/bakeries',bakeryRouter )
 // // app.use('/api/v1/posts',fileUploadRouter );
 // app.use('/api/v1/cart_items',cartRouter);
