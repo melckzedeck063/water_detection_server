@@ -8,6 +8,8 @@ router.post('/new_signal', SignalController.createSignal);
 router.get('/current_signal', SignalController.getCurrentSignal);
 router.get('/all_signals', SignalController.getAllSignals);
 
+router.get('/last_signal', SignalController.getLastSignal);
+
 router.delete('/delete', SignalController.deleteSignals);
 
 

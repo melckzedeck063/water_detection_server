@@ -94,6 +94,25 @@ exports.getCurrentData  = Model => catchAsync(async (req, res, next) => {
 
 })
 
+exports.getLastData = Model =>catchAsync(async (req,res,next) => {
+    const features =  new ApiFeatures(Model.findOne(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate()
+    
+    const doc = await features.query;
+
+    if (!doc) {
+        return next(new AppError('No document foundin this collection'));
+    }
+
+    res.status(200).json({
+        status : "success",
+        doc
+    })
+})
+
 exports.deactivateOne = Model => catchAsync(async (req, res, next) => {
     req.body.status = "deleted"
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {

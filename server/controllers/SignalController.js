@@ -13,6 +13,8 @@ exports.getAllSignals = Factory.getAll(Signal)
 
 exports.getCurrentSignal =   Factory.getCurrentData(Signal);
 
+exports.getLastSignal = Factory.getLastData(Signal)
+
 exports.deleteSignals =   catchAsync(async (req,res,next) => {
     const signals = await Signal.deleteMany();
     if(!signals){
