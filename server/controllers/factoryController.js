@@ -107,10 +107,11 @@ exports.getLastData = Model =>catchAsync(async (req,res,next) => {
         return next(new AppError('No document foundin this collection'));
     }
 
-    res.status(200).json({
-        status : "success",
-        doc
-    })
+    // res.status(200).json({
+    //     status : "success",
+    //     doc
+    // })
+    res.send(doc[0])
 })
 
 exports.deactivateOne = Model => catchAsync(async (req, res, next) => {
